@@ -8,6 +8,9 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{e8408c17-c37e-4465-ab38-9add10450d1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Data">
+      <UniqueIdentifier>{2ec1715f-aed6-4971-81c6-ce1621f2151b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -23,6 +26,9 @@
     <ClInclude Include="Component.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Bitset.h">
+      <Filter>Engine\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -34,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Bitset.cpp">
+      <Filter>Engine\Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
