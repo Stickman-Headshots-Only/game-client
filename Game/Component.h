@@ -3,6 +3,9 @@
 #include <memory>
 #include <type_traits>
 
+namespace Rei
+{
+
 class Component;
 using ComponentPtr = std::unique_ptr<Component>;
 
@@ -33,3 +36,4 @@ private:
 
 };
 
+} // namespace Rei
