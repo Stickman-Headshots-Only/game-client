@@ -2,98 +2,103 @@
 
 #include <ostream>
 
-Bitset Bitset::operator~() const noexcept
+namespace Rei
 {
-    Bitset res = *this;
 
-    for (auto bit : res.m_bits)
-        bit = !bit;
+    Bitset Bitset::operator~() const noexcept
+    {
+        Bitset res = *this;
 
-    return res;
-}
+        for (auto bit : res.m_bits)
+            bit = !bit;
 
-Bitset Bitset::operator&(const Bitset& bitset) const noexcept
-{
-    Bitset res(std::min(m_bits.size(), bitset.getSize()));
-    std::copy(m_bits.cbegin(), m_bits.cbegin() + static_cast<std::ptrdiff_t>(res.getSize()), res.m_bits.begin());
+        return res;
+    }
 
-    res &= bitset;
-    return res;
-}
+    Bitset Bitset::operator&(const Bitset& bitset) const noexcept
+    {
+        Bitset res(std::min(m_bits.size(), bitset.getSize()));
+        std::copy(m_bits.cbegin(), m_bits.cbegin() + static_cast<std::ptrdiff_t>(res.getSize()), res.m_bits.begin());
 
-Bitset Bitset::operator|(const Bitset& bitset) const noexcept
-{
-    Bitset res(std::min(m_bits.size(), bitset.getSize()));
-    std::copy(m_bits.cbegin(), m_bits.cbegin() + static_cast<std::ptrdiff_t>(res.getSize()), res.m_bits.begin());
+        res &= bitset;
+        return res;
+    }
 
-    res |= bitset;
-    return res;
-}
+    Bitset Bitset::operator|(const Bitset& bitset) const noexcept
+    {
+        Bitset res(std::min(m_bits.size(), bitset.getSize()));
+        std::copy(m_bits.cbegin(), m_bits.cbegin() + static_cast<std::ptrdiff_t>(res.getSize()), res.m_bits.begin());
 
-Bitset Bitset::operator^(const Bitset& bitset) const noexcept
-{
-    Bitset res(std::min(m_bits.size(), bitset.getSize()));
-    std::copy(m_bits.cbegin(), m_bits.cbegin() + static_cast<std::ptrdiff_t>(res.getSize()), res.m_bits.begin());
+        res |= bitset;
+        return res;
+    }
 
-    res ^= bitset;
-    return res;
-}
+    Bitset Bitset::operator^(const Bitset& bitset) const noexcept
+    {
+        Bitset res(std::min(m_bits.size(), bitset.getSize()));
+        std::copy(m_bits.cbegin(), m_bits.cbegin() + static_cast<std::ptrdiff_t>(res.getSize()), res.m_bits.begin());
 
-Bitset Bitset::operator<<(std::size_t shift) const
-{
-    Bitset res = *this;
-    res <<= shift;
-    return res;
-}
+        res ^= bitset;
+        return res;
+    }
 
-Bitset Bitset::operator>>(std::size_t shift) const
-{
-    Bitset res = *this;
-    res >>= shift;
-    return res;
-}
+    Bitset Bitset::operator<<(std::size_t shift) const
+    {
+        Bitset res = *this;
+        res <<= shift;
+        return res;
+    }
 
-Bitset& Bitset::operator&=(const Bitset& bitset) noexcept
-{
-    for (std::size_t bitIndex = 0; bitIndex < std::min(m_bits.size(), bitset.getSize()); ++bitIndex)
-        m_bits[bitIndex] = m_bits[bitIndex] && bitset[bitIndex];
-    return *this;
-}
+    Bitset Bitset::operator>>(std::size_t shift) const
+    {
+        Bitset res = *this;
+        res >>= shift;
+        return res;
+    }
 
-Bitset& Bitset::operator|=(const Bitset& bitset) noexcept
-{
-    for (std::size_t bitIndex = 0; bitIndex < std::min(m_bits.size(), bitset.getSize()); ++bitIndex)
-        m_bits[bitIndex] = m_bits[bitIndex] || bitset[bitIndex];
-    return *this;
-}
+    Bitset& Bitset::operator&=(const Bitset& bitset) noexcept
+    {
+        for (std::size_t bitIndex = 0; bitIndex < std::min(m_bits.size(), bitset.getSize()); ++bitIndex)
+            m_bits[bitIndex] = m_bits[bitIndex] && bitset[bitIndex];
+        return *this;
+    }
 
-Bitset& Bitset::operator^=(const Bitset& bitset) noexcept
-{
-    for (std::size_t bitIndex = 0; bitIndex < std::min(m_bits.size(), bitset.getSize()); ++bitIndex)
-        m_bits[bitIndex] = m_bits[bitIndex] ^ bitset[bitIndex];
-    return *this;
-}
+    Bitset& Bitset::operator|=(const Bitset& bitset) noexcept
+    {
+        for (std::size_t bitIndex = 0; bitIndex < std::min(m_bits.size(), bitset.getSize()); ++bitIndex)
+            m_bits[bitIndex] = m_bits[bitIndex] || bitset[bitIndex];
+        return *this;
+    }
 
-Bitset& Bitset::operator<<=(std::size_t shift)
-{
-    m_bits.resize(m_bits.size() + shift);
-    return *this;
-}
+    Bitset& Bitset::operator^=(const Bitset& bitset) noexcept
+    {
+        for (std::size_t bitIndex = 0; bitIndex < std::min(m_bits.size(), bitset.getSize()); ++bitIndex)
+            m_bits[bitIndex] = m_bits[bitIndex] ^ bitset[bitIndex];
+        return *this;
+    }
 
-Bitset& Bitset::operator>>=(std::size_t shift)
-{
-    m_bits.resize(m_bits.size() - shift);
-    return *this;
-}
+    Bitset& Bitset::operator<<=(std::size_t shift)
+    {
+        m_bits.resize(m_bits.size() + shift);
+        return *this;
+    }
 
-std::ostream& operator<<(std::ostream& stream, const Bitset& bitset)
-{
-    stream << "[ " << bitset[0];
+    Bitset& Bitset::operator>>=(std::size_t shift)
+    {
+        m_bits.resize(m_bits.size() - shift);
+        return *this;
+    }
 
-    for (std::size_t i = 1; i < bitset.getSize(); ++i)
-        stream << ", " << bitset[i];
+    std::ostream& operator<<(std::ostream& stream, const Bitset& bitset)
+    {
+        stream << "[ " << bitset[0];
 
-    stream << " ]";
+        for (std::size_t i = 1; i < bitset.getSize(); ++i)
+            stream << ", " << bitset[i];
 
-    return stream;
-}
+        stream << " ]";
+
+        return stream;
+    }
+
+} // namespace Rei
