@@ -13,7 +13,7 @@ class Component
 {
 public:
     template <typename CompT>
-    static std::size_t GetID()
+    static std::size_t getId()
     {
         static_assert(std::is_base_of<Component, CompT>, "Error: CompT is not derived from Component");
         static_assert(!std::is_same_v<Component, CompT>, "Error: CompT is same as Component");

@@ -58,8 +58,8 @@ public:
         return std::forward_as_tuple(addComponent<CompT>());
     }
 
-    template <typename Comp1, typename Comp2, typename... C>
-    std::tuple<Comp1&, Comp2&, C...> addComponents()
+    template <typename CompT1, typename CompT2, typename... C>
+    std::tuple<CompT1&, CompT2&, C...> addComponents()
     {
         static_assert(std::is_base_of_v<Component, CompT1>, "Error: The added component must be derived from Component.");
 

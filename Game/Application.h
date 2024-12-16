@@ -6,6 +6,7 @@
 
 #include "World.h"
 #include "Bitset.h"
+#include "Logger.h"
 
 
 namespace Rei
@@ -21,7 +22,10 @@ namespace Rei
     class Application
     {
     public:
-        explicit Application(std::size_t worldCount = 1);
+        explicit Application(std::size_t worldCount = 1)
+        {
+            m_worlds.reserve(worldCount);
+        }
 
         const std::vector<WorldPtr>& getWorlds() const { return m_worlds; }
         std::vector<WorldPtr>& getWorlds() { return m_worlds; }
@@ -43,7 +47,11 @@ namespace Rei
 
         void run()
         {
+            Logger::debug("[Application] Running...");
+
             while (runOnce());
+
+            Logger::debug("[Application] Exiting...");
         }
 
         template <typename FuncT> void run(FuncT&& callback)
