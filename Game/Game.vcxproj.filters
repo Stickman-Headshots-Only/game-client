@@ -29,16 +29,16 @@
     <ClInclude Include="Bitset.h">
       <Filter>Engine\Data</Filter>
     </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Application.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Bitset.cpp">
