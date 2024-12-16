@@ -31,6 +31,12 @@
     <ClInclude Include="Graph.h">
       <Filter>Engine\Data</Filter>
     </ClInclude>
+    <ClInclude Include="OwnerValue.h">
+      <Filter>Engine\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameBuffer.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -45,6 +51,12 @@
     </ClCompile>
     <ClCompile Include="Graph.cpp">
       <Filter>Engine\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="OwnerValue.cpp">
+      <Filter>Engine\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameBuffer.cpp">
+      <Filter>Engine\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
