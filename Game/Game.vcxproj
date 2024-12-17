@@ -30,6 +30,7 @@
     <ClInclude Include="Rei.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="Vector.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +41,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OwnerValue.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

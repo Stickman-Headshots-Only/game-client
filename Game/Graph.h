@@ -49,20 +49,12 @@ namespace Rei
             return *m_children[index];
         }
 
-        /// Checks if the current node is a root, that is, a node without any parent.
-        /// \return True if it is a root node, false otherwise.
         bool isRoot() const noexcept { return m_parents.empty(); }
-        /// Checks if the current node is a leaf, that is, a node without any child.
-        /// \return True if it is a leaf node, false otherwise.
+
         bool isLeaf() const noexcept { return m_children.empty(); }
-        /// Checks if the current node is isolated, that is, a node which is both a root & a leaf (without any parent or child).
-        /// \return True if it is an isolated node, false otherwise.
+
         bool isIsolated() const noexcept { return isRoot() && isLeaf(); }
 
-        /// Links the given nodes as parents of the current one.
-        /// \tparam OtherNodesTs Types of the other nodes to link.
-        /// \param node First node to be linked.
-        /// \param otherNodes Other nodes to be linked.
         template<typename... OtherNodesTs>
         void addParents(GraphNode& node, OtherNodesTs&&... otherNodes)
         {
@@ -79,24 +71,17 @@ namespace Rei
             if constexpr (sizeof...(otherNodes) > 0)
                 addParents(std::forward<OtherNodesTs>(otherNodes)...);
         }
-        /// Unlinks the given nodes as parents of the current one; this also removes the current one from the nodes' children.
-        /// \tparam OtherNodesTs Types of the other nodes to unlink.
-        /// \param node First node to be unlinked.
-        /// \param otherNodes Other nodes to be unlinked.
+        
         template<typename... OtherNodesTs>
         void removeParents(GraphNode& node, OtherNodesTs&&... otherNodes)
         {
             unlinkParent(node);
             node.unlinkChild(*this);
 
-            // Stop the recursive unpacking if no more nodes are to be removed as parents
             if constexpr (sizeof...(otherNodes) > 0)
                 removeParents(std::forward<OtherNodesTs>(otherNodes)...);
         }
-        /// Links the given nodes as children of the current one.
-        /// \tparam OtherNodesTs Types of the other nodes to link.
-        /// \param node First node to be linked.
-        /// \param otherNodes Other nodes to be linked.
+
         template<typename... OtherNodesTs>
         void addChildren(GraphNode& node, OtherNodesTs&&... otherNodes)
         {
@@ -113,10 +98,7 @@ namespace Rei
             if constexpr (sizeof...(otherNodes) > 0)
                 addChildren(std::forward<OtherNodesTs>(otherNodes)...);
         }
-        /// Unlinks the given nodes as children of the current one; this also removes the current one from the nodes' parents.
-        /// \tparam OtherNodesTs Types of the other nodes to unlink.
-        /// \param node First node to be unlinked.
-        /// \param otherNodes Other nodes to be unlinked.
+        
         template<typename... OtherNodesTs>
         void removeChildren(GraphNode& node, OtherNodesTs&&... otherNodes)
         {

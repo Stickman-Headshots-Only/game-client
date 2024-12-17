@@ -37,6 +37,7 @@
     <ClInclude Include="FrameBuffer.h">
       <Filter>Engine\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -58,6 +59,7 @@
     <ClCompile Include="FrameBuffer.cpp">
       <Filter>Engine\Render</Filter>
     </ClCompile>
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -71,6 +73,9 @@
     </Filter>
     <Filter Include="Engine\Render">
       <UniqueIdentifier>{0ea60ff4-e119-4cff-91d0-662f2373e241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Math">
+      <UniqueIdentifier>{a2d0a65a-2068-45ec-8434-2715ea82e23c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
